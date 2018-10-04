@@ -1,53 +1,105 @@
-Year,Season,City
-1992,Summer,Barcelona
-2012,Summer,London
-1920,Summer,Antwerpen
-1900,Summer,Paris
-1988,Winter,Calgary
-1992,Winter,Albertville
-1994,Winter,Lillehammer
-1932,Summer,Los Angeles
-2002,Winter,Salt Lake City
-1952,Summer,Helsinki
-1980,Winter,Lake Placid
-2000,Summer,Sydney
-1996,Summer,Atlanta
-1912,Summer,Stockholm
-1924,Summer,Paris
-2014,Winter,Sochi
-1948,Summer,London
-1998,Winter,Nagano
-2006,Winter,Torino
-2008,Summer,Beijing
-2016,Summer,Rio de Janeiro
-2004,Summer,Athina
-1960,Winter,Squaw Valley
-1964,Winter,Innsbruck
-1984,Winter,Sarajevo
-1984,Summer,Los Angeles
-1968,Summer,Mexico City
-1972,Summer,Munich
-1988,Summer,Seoul
-1936,Summer,Berlin
-1952,Winter,Oslo
-1956,Winter,Cortina d'Ampezzo
-1956,Summer,Melbourne
-1960,Summer,Roma
-1928,Summer,Amsterdam
-1976,Summer,Montreal
-1980,Summer,Moskva
-1964,Summer,Tokyo
-2010,Winter,Vancouver
-1968,Winter,Grenoble
-1906,Summer,Athina
-1972,Winter,Sapporo
-1976,Winter,Innsbruck
-1924,Winter,Chamonix
-1904,Summer,St. Louis
-1928,Winter,Sankt Moritz
-1908,Summer,London
-1948,Winter,Sankt Moritz
-1932,Winter,Lake Placid
-1936,Winter,Garmisch-Partenkirchen
-1896,Summer,Athina
-1956,Summer,Stockholm
+id|Year|Season|City
+1|2014|Winter|Sochi
+2|1948|Summer|London
+3|1952|Summer|Helsinki
+4|1992|Winter|Albertville
+5|1994|Winter|Lillehammer
+6|2002|Winter|Salt Lake City
+7|2006|Winter|Torino
+8|1996|Summer|Atlanta
+9|2016|Summer|Rio de Janeiro
+10|2008|Summer|Beijing
+11|2012|Summer|London
+12|2000|Summer|Sydney
+13|2004|Summer|Athina
+14|1980|Summer|Moskva
+15|1984|Summer|Los Angeles
+16|1992|Summer|Barcelona
+17|1988|Summer|Seoul
+18|1960|Summer|Roma
+19|1964|Summer|Tokyo
+20|1972|Summer|Munich
+21|1924|Winter|Chamonix
+22|1912|Summer|Stockholm
+23|1932|Summer|Los Angeles
+24|1924|Summer|Paris
+25|1920|Summer|Antwerpen
+26|1988|Winter|Calgary
+27|1968|Winter|Grenoble
+28|1976|Summer|Montreal
+29|2010|Winter|Vancouver
+30|1956|Summer|Melbourne
+31|1972|Winter|Sapporo
+32|1908|Summer|London
+33|1980|Winter|Lake Placid
+34|1984|Winter|Sarajevo
+35|1968|Summer|Mexico City
+36|1998|Winter|Nagano
+37|1960|Winter|Squaw Valley
+38|1936|Summer|Berlin
+39|1928|Summer|Amsterdam
+40|1976|Winter|Innsbruck
+41|1964|Winter|Innsbruck
+42|1936|Winter|Garmisch-Partenkirchen
+43|1956|Winter|Cortina d''Ampezzo
+44|1932|Winter|Lake Placid
+45|1904|Summer|St. Louis
+46|1952|Winter|Oslo
+47|1906|Summer|Athina
+48|1900|Summer|Paris
+49|1896|Summer|Athina
+50|1956|Summer|Stockholm
+51|1948|Winter|Sankt Moritz
+52|1928|Winter|Sankt Moritz
+53|3014|Winter|Sochi
+54|2948|Summer|London
+55|2952|Summer|Helsinki
+56|2992|Winter|Albertville
+57|2994|Winter|Lillehammer
+58|3002|Winter|Salt Lake City
+59|3006|Winter|Torino
+60|2996|Summer|Atlanta
+61|3016|Summer|Rio de Janeiro
+62|3008|Summer|Beijing
+63|3012|Summer|London
+64|3000|Summer|Sydney
+65|3004|Summer|Athina
+66|2980|Summer|Moskva
+67|2984|Summer|Los Angeles
+68|2992|Summer|Barcelona
+69|2988|Summer|Seoul
+70|2960|Summer|Roma
+71|2964|Summer|Tokyo
+72|2972|Summer|Munich
+73|2924|Winter|Chamonix
+74|2912|Summer|Stockholm
+75|2932|Summer|Los Angeles
+76|2924|Summer|Paris
+77|2920|Summer|Antwerpen
+78|2988|Winter|Calgary
+79|2968|Winter|Grenoble
+80|2976|Summer|Montreal
+81|3010|Winter|Vancouver
+82|2956|Summer|Melbourne
+83|2972|Winter|Sapporo
+84|2908|Summer|London
+85|2980|Winter|Lake Placid
+86|2984|Winter|Sarajevo
+87|2968|Summer|Mexico City
+88|2998|Winter|Nagano
+89|2960|Winter|Squaw Valley
+90|2936|Summer|Berlin
+91|2928|Summer|Amsterdam
+92|2976|Winter|Innsbruck
+93|2964|Winter|Innsbruck
+94|2936|Winter|Garmisch-Partenkirchen
+95|2956|Winter|Cortina d''Ampezzo
+96|2932|Winter|Lake Placid
+97|2904|Summer|St. Louis
+98|2952|Winter|Oslo
+99|2906|Summer|Athina
+100|2900|Summer|Paris
+101|2896|Summer|Athina
+102|2956|Summer|Stockholm
+103|2948|Winter|Sankt Moritz
+104|2928|Winter|Sankt Moritz

@@ -1,7 +1,5 @@
 import pandas as pd
 
-df = pd.read_csv('data/athlete_events.csv', sep=',')
-
 def isNaN_or_int(item):
     if pd.isna(item):
         return 'Null'
@@ -10,15 +8,35 @@ def isNaN_or_int(item):
 def isNaN_or_string(item):
     if pd.isna(item):
         return 'Null'
+    if "'" in item:
+        b = []
+        for let in item:
+            if let == "'":
+                b.append("'")
+            b.append(let)
+        b = ''.join(b)
+        return b
     return item
 
+# CREATING MAIN DATAFRAME
+df = pd.read_csv('data/athlete_events.csv', sep=',')
+df = df.dropna(subset=['Medal'])
+df = df.dropna(subset=['Height'])
+df = df.dropna(subset=['Weight'])
+df = df.query("Team != 'China'")
 
+copy = pd.read_csv('data/athlete_events.csv', sep=',')
+copy = copy.dropna(subset=['Medal'])
+copy = copy.dropna(subset=['Height'])
+copy = copy.dropna(subset=['Weight'])
+copy = copy.query("Team != 'China'")
+
+copy['Year'] = copy['Year'].apply(lambda x : x+1000)
+df = df.append(copy,ignore_index=True)
+
+
+# CREATING DATAFRAMES FOR TABLES IN DATABASE
 def create_data_frames():
-    df = pd.read_csv('data/athlete_events.csv', sep=',')
-    copy = pd.read_csv('data/athlete_events.csv', sep=',')   
-
-    copy['Year'] = copy['Year'].apply(lambda x : x+1000)
-    df = df.append(copy,ignore_index=True)
 
     # PARTICIPANTS DATAFRAME PREPARE
     raw_participants = df.loc[:, 'Name':'Team'] # взять часть столбцов из таблицы (срез по столбцам)
@@ -29,17 +47,6 @@ def create_data_frames():
     raw_games = df.loc[:, 'Year':'City']
     games = raw_games.drop_duplicates()
     games = games.reset_index(drop=True)
-    
-    # рандомим дополнительные олимпийские игры 
-   # games_count = games['Year'].count()
-   # fake_cities_of_games = list(games['City'])
-   # fake_years_of_games = [str(2018 + 2*i) for i in range(games_count)]
-   # seasons = ['Winter','Summer']
-
-   # val = pd.DataFrame([ [fake_years_of_games[i], seasons[i%2], fake_cities_of_games[i]] for i in range(games_count)],
-   #                                                                                     columns=['Year', 'Season', 'City'])
-
-   # games = games.append(val, ignore_index=True) # Без присвоения append не сработает
 
     # EVENTS DATAFRAME PREPARE
     events = df.loc[:, 'Sport':'Event']
@@ -65,11 +72,10 @@ def create_data_frames():
     list_of_participants_ids = []
     list_of_events_ids = []
     list_of_participants = list(participants['Name'].values)
-    print(len(list_of_participants))
-
     for man in list_of_participants:
         list_of_events_of_participant = list(pe[pe['Name'] == man]['Event'].values)
         for ev in list_of_events_of_participant:
+            print(man, ev,'\n')
             list_of_participants_ids.append(participants[participants['Name'] == man].index[0]+1)
             list_of_events_ids.append(events[events['Event'] == ev].index[0]+1)
 
@@ -86,10 +92,12 @@ def create_data_frames():
     # PREPARE EVENT-GAME RELATION
     eg_events = df['Event']
     eg_game = df['Year']
+    eg_city = df['City']
 
     eg = pd.DataFrame({
         'Event': eg_events,
-        'Game': eg_game
+        'Game': eg_game,
+        'City': eg_city
     })
     eg = eg.drop_duplicates()
     eg = eg.sort_values(by=['Game'])
@@ -98,13 +106,14 @@ def create_data_frames():
     list_of_games_ids = []
     list_of_events_ids = []
     list_of_games = list(games['Year'].values)
+    list_of_cities = list(games['City'].values)
+    eg_count = games['Year'].count()
 
-    print(len(list_of_games))
-
-    for game in list_of_games:
-        list_of_events_in_game = list(eg[eg['Game'] == game]['Event'].values)
+    for i in range(eg_count):
+        list_of_events_in_game = list(eg[(eg['Game'] == list_of_games[i]) & (eg['City'] == list_of_cities[i])]['Event'].values)
         for ev in list_of_events_in_game:
-            list_of_games_ids.append(games[games['Year'] == game].index[0]+1)
+            print(i,ev)
+            list_of_games_ids.append(games[(games['Year'] == list_of_games[i]) & (games['City'] == list_of_cities[i])].index[0]+1) # TO DO добавить выборку по городу
             list_of_events_ids.append(events[events['Event'] == ev].index[0]+1)
 
     event_game_relation_table = pd.DataFrame({
@@ -119,23 +128,28 @@ def create_data_frames():
     # PREPARE GAME-PARICIPANT RELATION
     gp_game = df['Year']
     gp_name = df['Name']
+    gp_city = df['City']
 
     gp = pd.DataFrame({
         'Game': gp_game,
-        'Name': gp_name
+        'Name': gp_name,
+        'City': gp_city
     })
     gp = gp.drop_duplicates()
 
     list_of_participants_ids = []
     list_of_games_ids = []
     list_of_participants = list(participants['Name'].values)
-    print(len(list_of_participants))
 
     for man in list_of_participants:
         list_of_games_of_participant = list(gp[gp['Name'] == man]['Game'].values)
-        for game in list_of_games_of_participant:
+        list_of_cities_of_participant = list(gp[gp['Name'] == man]['City'].values)
+        games_count = len(list_of_games_of_participant)
+
+        for i in range(games_count):
+            print(man,i)
             list_of_participants_ids.append(participants[participants['Name'] == man].index[0]+1)
-            list_of_games_ids.append(games[games['Year'] == game].index[0]+1)
+            list_of_games_ids.append(games[(games['Year'] == list_of_games_of_participant[i]) & (games['City'] == list_of_cities_of_participant[i])].index[0]+1)
 
 
     game_participant_relation_table = pd.DataFrame({
@@ -160,7 +174,7 @@ def generate():
     events_count = events['Event'].count()
 
     # participants table
-    p = open('participans.csv', 'w')
+    p = open('participants.csv', 'w')
     p.write("id,Name,Sex,Age,Height,Weight,Team\n")
     for i in range(participants_count):
         string = "{0}|{1}|{2}|{3}|{4}|{5}|{6}\n".format(i+1,
@@ -241,5 +255,7 @@ def generate():
     g.close()
     e.close()
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     generate()
+    # create_data_frames()

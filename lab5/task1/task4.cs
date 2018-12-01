@@ -12,16 +12,16 @@ namespace validator
     {
         static void Main()
         {
-            XmlReaderSettings bandsSettings = new XmlReaderSettings();
-            bandsSettings.Schemas.Add("part", "./task1-explicit.xsd");
-            bandsSettings.ValidationType = ValidationType.Schema;
-            bandsSettings.ValidationEventHandler += new ValidationEventHandler(bandsSettingsValidationEventHandler);
-            XmlReader parts = XmlReader.Create("./bad-xml.xml", bandsSettings);
+            XmlReaderSettings partSettings = new XmlReaderSettings();
+            partSettings.Schemas.Add("part", "./task1-explicit.xsd");
+            partSettings.ValidationType = ValidationType.Schema;
+            partSettings.ValidationEventHandler += new ValidationEventHandler(partSettingsValidationEventHandler);
+            XmlReader parts = XmlReader.Create("./bad-xml.xml", partSettings);
             while (parts.Read()) { }
             Console.WriteLine("Тестирование завершено.");
         }
 
-        static void bandsSettingsValidationEventHandler(object sender, ValidationEventArgs e)
+        static void partSettingsValidationEventHandler(object sender, ValidationEventArgs e)
         {
             if (e.Severity == XmlSeverityType.Warning)
             {

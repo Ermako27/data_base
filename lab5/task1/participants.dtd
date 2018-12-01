@@ -1,0 +1,9 @@
+<!ELEMENT root (Participant*)>
+
+<!ELEMENT Participant (Game)>
+
+<!ATTLIST Participant
+    Game_id (#PCDATA) #REQUIRED
+    YearG (#PCDATA)
+    Season (#PCDATA)
+    City (#PCDATA)>

@@ -15,7 +15,3 @@ ALTER TABLE dbo.participant_game_relation ADD
 CONSTRAINT P_ID FOREIGN KEY (Participant_id) REFERENCES dbo.participants (Participant_id),
 CONSTRAINT E_ID FOREIGN KEY (Game_id) REFERENCES dbo.games (Event_id)
 GO
-
-ALTER TABLE dbo.participants ADD 
-
-

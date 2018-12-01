@@ -1,0 +1,30 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="root" targetNamespace="part" xmlns:mstns="part" xmlns="part" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:element name="root" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Participant">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Game" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="Game_id" form="unqualified" type="xs:string" />
+                  <xs:attribute name="YearG" form="unqualified" type="xs:string" />
+                  <xs:attribute name="Season" form="unqualified" type="xs:string" />
+                  <xs:attribute name="City" form="unqualified" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Participant_id" form="unqualified" type="xs:string" />
+            <xs:attribute name="PersonName" form="unqualified" type="xs:string" />
+            <xs:attribute name="Sex" form="unqualified" type="xs:string" />
+            <xs:attribute name="Age" form="unqualified" type="xs:string" />
+            <xs:attribute name="WeightP" form="unqualified" type="xs:string" />
+            <xs:attribute name="HeightP" form="unqualified" type="xs:string" />
+            <xs:attribute name="Team" form="unqualified" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

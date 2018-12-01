@@ -17,12 +17,12 @@ GO
 CREATE TABLE dbo.participants
 (
     Participant_id INT NOT NULL PRIMARY KEY,
-    PersonName VARCHAR(170) NOT NULL,
+    PersonName VARCHAR(90) NOT NULL,
     Sex CHAR,
     Age INT, 
     HeightP INT,
     WeightP INT,
-    Team VARCHAR(70)
+    Team VARCHAR(50)
 );
 GO
 
@@ -35,8 +35,8 @@ CREATE TABLE dbo.games
 (
     Game_id INT NOT NULL PRIMARY KEY,
     YearG INT,
-    Season VARCHAR(50),
-    City VARCHAR(130),
+    Season VARCHAR(20),
+    City VARCHAR(70),
 );
 GO
 
@@ -48,12 +48,11 @@ GO
 CREATE TABLE dbo.events
 (
     Event_id INT NOT NULL PRIMARY KEY, 
-    Sport VARCHAR(120), 
-    EventName VARCHAR(170),
+    Sport VARCHAR(50), 
+    EventName VARCHAR(100),
     PCount INT
 );
 GO
-
 
 IF OBJECT_ID('dbo.participants_events_relation', 'U') IS NOT NULL
 DROP TABLE dbo.participants_events_relation
@@ -91,4 +90,3 @@ CREATE TABLE dbo.participant_game_relation
     Participant_id INT,
     Game_id INT
 )
-
